@@ -9,10 +9,18 @@ const Box = styled.body`
   padding: 10%;
 `;
 
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+`;
+
 const Button = styled.button`
+  width: 25%;
   background: #2f2fa2;
   padding: 6px 10px;
-  margin: 5px;
+  margin: 2%;
   border: none;
   border-radius: 5px;
   color: #ffffff;
@@ -103,7 +111,7 @@ function LoginForm() {
 
   return (
     <Box>
-      <form onSubmit={formSubmit}>
+      <Form onSubmit={formSubmit}>
         <label>
           Username
           <input
@@ -133,7 +141,7 @@ function LoginForm() {
         </label>
 
         <Button>Submit</Button>
-      </form>
+      </Form>
     </Box>
   );
 }

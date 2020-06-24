@@ -8,6 +8,7 @@ const Foot = styled.footer`
   background: #242582;
   width: 100%;
   padding: 20px 0;
+  margin: 50% 0 0 0;
   display: flex;
 `;
 
