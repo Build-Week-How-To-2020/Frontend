@@ -1,36 +1,55 @@
 import React from "react";
+// import "./header.css";
 import styled from "styled-components";
+
+const Head = styled.head`
+  display: flex;
+  justify-content: space-between;
+  background-color: #242582;
+  color: #eee;
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 10px;
+`;
+
+const Nav = styled.nav`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 50px;
+  padding-top: 10px;
+  color: #eee;
+`;
+
+const Anchor = styled.a`
+  color: #eee;
+  font-size: 1rem;
+  margin-left: 20px;
+  transition: 0.5s;
+  text-decoration: none;
+  font-family: "Sriracha", cursive;
+`;
 
 function Header() {
   return (
     <>
-      <div class="navtitle">
-        <h1>QuickTricks</h1>
-        <h5>For Life</h5>
-      </div>
-      <nav>
-        <div class="dropdown">
-          <button class="dropbtn">&#9776;</button>
-          <div class="dropdown-content">
-            <a href="index.html">Home</a>
-            <a href="about.html">About Us</a>
-            <a href="categories.html">Categories</a>
-            <a href="faq.html">FAQ</a>
-            <a href="contact.html">Contact</a>
-            <a href="careers.html">Careers</a>
-            <a href="login.html">Login</a>
-          </div>
+      <Head>
+        <div class="navtitle">
+          <h1>QuickTricks</h1>
+          <h5>For Life</h5>
         </div>
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="categories.html">Categories</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
-        <a href="careers.html" class="active">
-          Careers
-        </a>
-        <a href="login.html">Login</a>
-      </nav>
+        <Nav>
+          <Anchor href="index.html" class="active">
+            Home
+          </Anchor>
+          <Anchor href="about.html">About Us</Anchor>
+          <Anchor href="categories.html">Categories</Anchor>
+          <Anchor href="faq.html">FAQ</Anchor>
+          <Anchor href="contact.html">Contact</Anchor>
+          <Anchor href="careers.html">Careers</Anchor>
+          <Anchor href="login.html">Login</Anchor>
+        </Nav>
+      </Head>
     </>
   );
 }

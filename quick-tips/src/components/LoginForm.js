@@ -3,6 +3,12 @@ import axios from "axios";
 import * as yup from "yup";
 import styled from "styled-components";
 
+const Box = styled.body`
+  width: 100%;
+  margin: 5%;
+  padding: 10%;
+`;
+
 const Button = styled.button`
   background: #2f2fa2;
   padding: 6px 10px;
@@ -96,37 +102,39 @@ function LoginForm() {
   };
 
   return (
-    <form onSubmit={formSubmit}>
-      <label>
-        Username
-        <input
-          type="text"
-          name="username" /* name is computed key:value in [event.target.name]: event.target.value  */
-          id="uname"
-          value={formState.username}
-          onChange={inputChanges}
-        />
-        {errors.username.length > 0 ? (
-          <p className="error">{errors.username}</p>
-        ) : null}
-      </label>
+    <Box>
+      <form onSubmit={formSubmit}>
+        <label>
+          Username
+          <input
+            type="text"
+            name="username" /* name is computed key:value in [event.target.name]: event.target.value  */
+            id="uname"
+            value={formState.username}
+            onChange={inputChanges}
+          />
+          {errors.username.length > 0 ? (
+            <p className="error">{errors.username}</p>
+          ) : null}
+        </label>
 
-      <label>
-        Password
-        <input
-          type="text"
-          name="password"
-          id="password"
-          value={formState.password}
-          onChange={inputChanges}
-        />
-        {errors.password.length > 0 ? (
-          <p className="error">{errors.password}</p>
-        ) : null}
-      </label>
+        <label>
+          Password
+          <input
+            type="text"
+            name="password"
+            id="password"
+            value={formState.password}
+            onChange={inputChanges}
+          />
+          {errors.password.length > 0 ? (
+            <p className="error">{errors.password}</p>
+          ) : null}
+        </label>
 
-      <Button>Submit</Button>
-    </form>
+        <Button>Submit</Button>
+      </form>
+    </Box>
   );
 }
 
