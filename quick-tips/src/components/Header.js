@@ -10,6 +10,7 @@ const Head = styled.head`
   width: 100%;
   margin: 0 auto;
   padding-bottom: 10px;
+  width: 100%;
 `;
 
 const Header1 = styled.h1`

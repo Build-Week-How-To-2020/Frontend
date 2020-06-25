@@ -7,8 +7,8 @@ const Foot = styled.footer`
   color: #eee;
   background: #242582;
   width: 100%;
-  padding: 20px 0;
-  margin: 50% 0 0 0;
+  padding: 0px 0;
+  margin: 5% 0 0 0;
   display: flex;
 `;
 
