@@ -12,6 +12,15 @@ const Head = styled.head`
   padding-bottom: 10px;
 `;
 
+const Header1 = styled.h1`
+  font-family: "Bungee Inline", Impact;
+`;
+
+const Header5 = styled.h5`
+  font-size: 1rem;
+  font-family: "Bitter", Times;
+`;
+
 const Nav = styled.nav`
   display: flex;
   align-items: center;
@@ -35,8 +44,8 @@ function Header() {
     <>
       <Head>
         <div class="navtitle">
-          <h1>QuickTricks</h1>
-          <h5>For Life</h5>
+          <Header1>QuickTricks</Header1>
+          <Header5>For Life</Header5>
         </div>
         <Nav>
           <Anchor href="index.html" class="active">

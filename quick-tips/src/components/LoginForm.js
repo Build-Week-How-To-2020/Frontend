@@ -16,6 +16,18 @@ const Form = styled.form`
   justify-content: center;
 `;
 
+const Input = styled.input`
+  width: 50%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  margin-left: 10px;
+  resize: vertical;
+`;
+
 const Button = styled.button`
   width: 25%;
   background: #2f2fa2;
@@ -114,7 +126,7 @@ function LoginForm() {
       <Form onSubmit={formSubmit}>
         <label>
           Username
-          <input
+          <Input
             type="text"
             name="username" /* name is computed key:value in [event.target.name]: event.target.value  */
             id="uname"
@@ -128,7 +140,7 @@ function LoginForm() {
 
         <label>
           Password
-          <input
+          <Input
             type="text"
             name="password"
             id="password"
