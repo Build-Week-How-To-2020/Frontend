@@ -3,6 +3,7 @@ import Form from "./components/LoginForm";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import styled from "styled-components";
+import Reviews from './components/Reviews';
 
 const Container = styled.body`
   display: flex;
@@ -15,10 +16,12 @@ function App() {
     <Container>
       <div className="App">
         <Header />
+        <Reviews/>
         <Form />
         <Footer />
       </div>
     </Container>
+
   );
 }
 
