@@ -10,11 +10,6 @@ const Container = styled.body`
   width: 100%;
 `;
 
-import Form from './components/SignUpForm';
-
-
-import Reviews from './components/Reviews';
-
 function App() {
   return (
     <Container>
