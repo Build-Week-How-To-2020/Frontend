@@ -1,6 +1,6 @@
 import React from 'react';
 
-const review = (props) => {
+const Review = (props) => {
     return (
         <div>
             {props.review.date}
@@ -10,4 +10,4 @@ const review = (props) => {
     )
 }
 
-export default review;
+export default Review;

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import review from './review';
+import Review from './review';
 import { FetchReviews} from '../actions1';
 
 function AllReviews(props) {
@@ -12,7 +12,7 @@ function AllReviews(props) {
 
     return(
         <div>
-            {props.review.map((review) => (
+            {props.Review.map((review) => (
                 <review review={review}></review>
             ))}
         </div>
