@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { addReview } from '../actions1';
+import Rating from 'react-rating';
 import '../review.css';
 function Reviews (props) {
 
@@ -27,14 +28,19 @@ function Reviews (props) {
             rating: ''
         })
     }
+    
 
 return (
     <div>
         <div>
-        <h2>Create Review</h2>
+        <h2 className="h2">Create Review</h2>
         </div>
         <form>
-           
+           <span className="span">
+           <Rating start={4}
+  stop={10}
+        />
+           </span>
             <div className="input-container">
             <Divbox
             type='text'
