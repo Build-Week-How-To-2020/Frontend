@@ -3,9 +3,9 @@ import React from 'react';
 const Review = (props) => {
     return (
         <div>
-            {props.review.date}
-            {props.review.name}
-            {props.review.review}
+            <div>{props.review.date}</div>
+            <div>{props.review.name}</div>
+            <div>{props.review.review}</div>
         </div>
     )
 }
