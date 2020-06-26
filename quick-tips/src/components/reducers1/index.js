@@ -1,16 +1,32 @@
 import { START_FETCHING, 
         FETCH_SUCCESS,
         FETCH_FAILURE,
-        ADD_REVIEW,
-        REVIEW_ADDED,
-        REVIEW_FAIL
+        
+        ADD_HOW_TO,
+        HOW_TO_SUCCESS,
+        HOW_TO_FAIL,
+
+        LOGIN_START,
+        LOGIN_SUCCESS,
+        LOGIN_ERROR,
+
+        SIGNUP_START,
+        SIGNUP_SUCCESS,
+        SIGNUP_ERROR
+       
 
 } from '../../actions1';
 
 const initialState = {
-    Reviews: [],
-    isFetching: false,
-    error: ''
+    Howtos: [],
+    Howto: null,
+    user: [],
+    loggingIn: false,
+    signingUp: false,
+    gettingHowtos: false,
+    addingHowto:false,
+    error: '',
+    token: localStorage.getItem('token'),
 }
 
 const reducer = (state = initialState, action) => {
@@ -18,43 +34,81 @@ const reducer = (state = initialState, action) => {
     case START_FETCHING:
     return {
         ...state,
-        isFetching: true,
-        error: ''
+        gettingHowtos: true,
+        
     };
 
     case FETCH_SUCCESS: 
         return {
             ...state,
-            isFetching: false,
-            error: '',
-            Reivews: action.payload
+            gettingHowtos: false,
+            Howtos: action.payload
         };
         
     case FETCH_FAILURE: 
     return {
        ...state,
-       isFetching: false,
+       gettingHowtos: false,
        error: action.payload,
     };
-    case ADD_REVIEW:
-    return{
-        ...state,
-        isFetching: false,
-        error: ''
-    };
-    case REVIEW_ADDED:
+    case ADD_HOW_TO:
     return {
+        ...state,
+        addingHowto: true,
+
+    }
+    
+    case HOW_TO_SUCCESS:
+    return{
         ...state,
         isFetching: false,
         error: '',
-        Reviews: action.payload,
+        Howto: action.payload
     };
-    case REVIEW_FAIL:
-    return{
-        ...state, 
-        isFetching: false,
-        error: action.payload,
-    }
+   case HOW_TO_FAIL:
+   return{
+       ...state,
+       isFetching: false,
+       error: action.payload
+   };
+   case LOGIN_START:
+   return {
+     ...state,
+     loggingIn: true
+   };
+ case LOGIN_SUCCESS:
+   return {
+     ...state,
+     loggingIn: false,
+     username: action.payload.username
+   };
+ case LOGIN_ERROR:
+   return {
+     ...state,
+     loggingIn: false,
+     error: action.payload
+   };
+
+ case SIGNUP_START:
+   return {
+     ...state,
+     signingUp: true
+   };
+
+ case SIGNUP_SUCCESS:
+   return {
+     ...state,
+     user: action.payload,
+     signingUp: false,
+     token: action.payload
+   };
+
+ case SIGNUP_ERROR:
+   return {
+     ...state,
+     signingUp: false,
+     error: action.payload
+   };
     default:
     return state;
 }

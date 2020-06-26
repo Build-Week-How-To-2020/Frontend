@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-// import axios from "axios";
+import axios from "axios";
 import * as yup from "yup";
 import styled from "styled-components";
-import {connect} from 'react-redux';
-import {login} from '../actions1/index';
+
 const Box = styled.body`
   width: 100%;
   margin: 5%;
@@ -50,7 +49,7 @@ const formSchema = yup.object().shape({
   password: yup.string().required(),
 });
 
-function LoginForm(props) {
+function LoginForm() {
   //   declare states and initialize to an object
   const [formState, setFormState] = useState({
     username: "",
@@ -108,24 +107,18 @@ function LoginForm(props) {
   //   this works the submit button:
   const formSubmit = (e) => {
     e.preventDefault();
-    props.login(formState);
-    // .then(()=>  props.history.push('/home'));//push to home page after successful login
-    setFormState({
-      username: "",
-      password: ""
-    });
-  
-      // .post("https://reqres.in/api/users", formState)
-      // .then((res) => {
-      //   setPost(res.data);  get just the form data from the REST api
+    axios
+      .post("https://reqres.in/api/users", formState)
+      .then((res) => {
+        setPost(res.data); // get just the form data from the REST api
 
         // reset form if successful
-      //   setFormState({
-      //     username: "",
-      //     password: "",
-      //   });
-      // })
-      // .catch((err) => console.log(err.response));
+        setFormState({
+          username: "",
+          password: "",
+        });
+      })
+      .catch((err) => console.log(err.response));
   };
 
   return (
@@ -164,9 +157,5 @@ function LoginForm(props) {
     </Box>
   );
 }
-const mapStateToProps = ({loggingIn}) => {
-  return {
-    loggingIn: loggingIn
-  };
-};
-export default connect(mapStateToProps, {login})(LoginForm);
+
+export default LoginForm;
