@@ -1,13 +1,13 @@
 import React from 'react';
 
-const review = (props) => {
+const Review = (props) => {
     return (
         <div>
-            {props.review.date}
-            {props.review.name}
-            {props.review.review}
+            <div>{props.review.date}</div>
+            <div>{props.review.name}</div>
+            <div>{props.review.review}</div>
         </div>
     )
 }
 
-export default review;
+export default Review;

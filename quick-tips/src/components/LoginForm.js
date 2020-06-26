@@ -13,8 +13,8 @@ const Box = styled.body`
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  width: 100%;
-  justify-content: center;
+  width: 60%;
+  margin: 20%;
 `;
 
 const Input = styled.input`
@@ -33,7 +33,7 @@ const Button = styled.button`
   width: 25%;
   background: #2f2fa2;
   padding: 6px 10px;
-  margin: 2%;
+  margin-left: 40%;
   border: none;
   border-radius: 5px;
   color: #ffffff;
@@ -129,39 +129,39 @@ function LoginForm(props) {
   };
 
   return (
-    <Box>
-      <Form onSubmit={formSubmit}>
-        <label>
-          Username
-          <Input
-            type="text"
-            name="username" /* name is computed key:value in [event.target.name]: event.target.value  */
-            id="uname"
-            value={formState.username}
-            onChange={inputChanges}
-          />
-          {errors.username.length > 0 ? (
-            <p className="error">{errors.username}</p>
-          ) : null}
-        </label>
+    // <Box>
+    <Form onSubmit={formSubmit}>
+      <label>
+        Username
+        <Input
+          type="text"
+          name="username" /* name is computed key:value in [event.target.name]: event.target.value  */
+          id="uname"
+          value={formState.username}
+          onChange={inputChanges}
+        />
+        {errors.username.length > 0 ? (
+          <p className="error">{errors.username}</p>
+        ) : null}
+      </label>
 
-        <label>
-          Password
-          <Input
-            type="text"
-            name="password"
-            id="password"
-            value={formState.password}
-            onChange={inputChanges}
-          />
-          {errors.password.length > 0 ? (
-            <p className="error">{errors.password}</p>
-          ) : null}
-        </label>
+      <label>
+        Password
+        <Input
+          type="text"
+          name="password"
+          id="password"
+          value={formState.password}
+          onChange={inputChanges}
+        />
+        {errors.password.length > 0 ? (
+          <p className="error">{errors.password}</p>
+        ) : null}
+      </label>
 
-        <Button>Submit</Button>
-      </Form>
-    </Box>
+      <Button>Submit</Button>
+    </Form>
+    // </Box>
   );
 }
 const mapStateToProps = ({loggingIn}) => {

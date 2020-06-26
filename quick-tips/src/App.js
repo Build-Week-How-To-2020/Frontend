@@ -7,8 +7,13 @@ import Form from './components//SignUpForm';
 import {Route, Link } from 'react-router-dom';
 const Container = styled.body`
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  width: 100%;
+  width: 60%;
+  margin-top: 0;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-botton: 0%;
 `;
 
 function App() {

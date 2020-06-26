@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { addReview } from '../actions1';
 import Rating from 'react-rating';
-
 import '../review.css';
 function Reviews (props) {
 
@@ -29,6 +28,7 @@ function Reviews (props) {
             rating: ''
         })
     }
+    
 
 return (
     <div className="formContainer">
