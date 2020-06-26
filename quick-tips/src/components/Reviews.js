@@ -31,24 +31,22 @@ function Reviews (props) {
     
 
 return (
-    <div>
+    <div className="formContainer">
         <div>
-        <h2 className="h2">Create Review</h2>
+        <h2 className='h2'>Create Review</h2>
         </div>
         <form>
-           <span className="span">
-           <Rating start={4}
-  stop={10}
-        />
-           </span>
+           <div><Rating/></div>
             <div className="input-container">
-            <Divbox
+            <Sinput
+            name="comment"
+            onChange={onChangeHandler}
             type='text'
             placeholder='Was this hack practical and effective? Why or why not?'
             className="input"
-            ></Divbox>
+            ></Sinput>
             </div>
-           <button className="deepBlue">Submit</button>
+           <button type="submit" onSubmit={onSubmitHandler} className="deepBlue">Submit</button>
         </form>
     </div>
 )
@@ -58,5 +56,5 @@ return (
 
 export default connect(null, {addReview})(Reviews)
 
-const Divbox = styled.input`height:130px; border: solid gray 1px; width: 40%; border-radius: 1%; `; 
+const Sinput = styled.input`height:130px; border: solid gray 1px; width: 40%; border-radius: 1%; `; 
 

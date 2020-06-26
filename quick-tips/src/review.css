@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center; 
     margin: 50px 250px 5px 250px;
+    
 }
 .deepBlue {
   background-color:   #F64C72;
@@ -11,5 +12,10 @@
 }
 
 .h2 {
-margin-bottom: 250px;
+  margin-top: 100px;
+  margin-bottom: 200px;
+}
+
+.formContainer {
+  border: none;
 }

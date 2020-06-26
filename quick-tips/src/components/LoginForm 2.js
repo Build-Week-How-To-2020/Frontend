@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-// import axios from "axios";
+import axios from "axios";
 import * as yup from "yup";
 import styled from "styled-components";
-import {connect} from 'react-redux';
-import {login} from '../actions1/index';
+
 const Box = styled.body`
   width: 100%;
   margin: 5%;
@@ -13,8 +12,8 @@ const Box = styled.body`
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  width: 60%;
-  margin: 20%;
+  width: 100%;
+  justify-content: center;
 `;
 
 const Input = styled.input`
@@ -33,7 +32,7 @@ const Button = styled.button`
   width: 25%;
   background: #2f2fa2;
   padding: 6px 10px;
-  margin-left: 40%;
+  margin: 2%;
   border: none;
   border-radius: 5px;
   color: #ffffff;
@@ -50,7 +49,7 @@ const formSchema = yup.object().shape({
   password: yup.string().required(),
 });
 
-function LoginForm(props) {
+function LoginForm() {
   //   declare states and initialize to an object
   const [formState, setFormState] = useState({
     username: "",
@@ -108,65 +107,55 @@ function LoginForm(props) {
   //   this works the submit button:
   const formSubmit = (e) => {
     e.preventDefault();
-    props.login(formState);
-    // .then(()=>  props.history.push('/home'));//push to home page after successful login
-    setFormState({
-      username: "",
-      password: ""
-    });
-  
-      // .post("https://reqres.in/api/users", formState)
-      // .then((res) => {
-      //   setPost(res.data);  get just the form data from the REST api
+    axios
+      .post("https://reqres.in/api/users", formState)
+      .then((res) => {
+        setPost(res.data); // get just the form data from the REST api
 
         // reset form if successful
-      //   setFormState({
-      //     username: "",
-      //     password: "",
-      //   });
-      // })
-      // .catch((err) => console.log(err.response));
+        setFormState({
+          username: "",
+          password: "",
+        });
+      })
+      .catch((err) => console.log(err.response));
   };
 
   return (
-    // <Box>
-    <Form onSubmit={formSubmit}>
-      <label>
-        Username
-        <Input
-          type="text"
-          name="username" /* name is computed key:value in [event.target.name]: event.target.value  */
-          id="uname"
-          value={formState.username}
-          onChange={inputChanges}
-        />
-        {errors.username.length > 0 ? (
-          <p className="error">{errors.username}</p>
-        ) : null}
-      </label>
+    <Box>
+      <Form onSubmit={formSubmit}>
+        <label>
+          Username
+          <Input
+            type="text"
+            name="username" /* name is computed key:value in [event.target.name]: event.target.value  */
+            id="uname"
+            value={formState.username}
+            onChange={inputChanges}
+          />
+          {errors.username.length > 0 ? (
+            <p className="error">{errors.username}</p>
+          ) : null}
+        </label>
 
-      <label>
-        Password
-        <Input
-          type="text"
-          name="password"
-          id="password"
-          value={formState.password}
-          onChange={inputChanges}
-        />
-        {errors.password.length > 0 ? (
-          <p className="error">{errors.password}</p>
-        ) : null}
-      </label>
+        <label>
+          Password
+          <Input
+            type="text"
+            name="password"
+            id="password"
+            value={formState.password}
+            onChange={inputChanges}
+          />
+          {errors.password.length > 0 ? (
+            <p className="error">{errors.password}</p>
+          ) : null}
+        </label>
 
-      <Button>Submit</Button>
-    </Form>
-    // </Box>
+        <Button>Submit</Button>
+      </Form>
+    </Box>
   );
 }
-const mapStateToProps = ({loggingIn}) => {
-  return {
-    loggingIn: loggingIn
-  };
-};
-export default connect(mapStateToProps, {login})(LoginForm);
+
+export default LoginForm;
