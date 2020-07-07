@@ -1,94 +1,80 @@
 import axios from 'axios';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
 
-export const START_FETCHING = 'START_FETCHING';
+export const FETCH_START = 'FETCH_START';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
-export const FETCH_FAILURE = 'FETCH_FAILURE';
+export const FETCH_ERROR = 'FETCH_ERROR';
 
-export const ADD_REVIEW = 'ADD_REVIEW';
-export const REVIEW_ADDED = 'REVIEW_ADDED';
-export const REVIEW_FAIL = 'REVIEW_FAIL';
-
-export const ADD_HOW_TO = 'ADD_HOW_TO';
+export const HOW_TO_START = 'HOW_TO_START';
 export const HOW_TO_SUCCESS = 'HOW_TO_SUCCESS';
-export const HOW_TO_FAIL    = 'HOW_TO_FAIL';
+export const HOW_TO_ERROR = 'HOW_TO_ERROR';
 
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const LOGIN_ERROR   = 'LOGIN_ERROR';
 
 export const SIGNUP_START = 'SIGNUP_START';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_ERROR = 'SIGNUP_ERROR';
 
+export const DELETE_START = 'DELETE_START';
+export const DELETE_SUCCESS = 'DELETE_SUCCESS';
+export const DELETE_ERROR = 'DELETE_ERROR';
 
-export const login = state => dispatch => {
-    dispatch({type: LOGIN_START});
-    return axiosWithAuth()
-    .post('https://lambda-how-to-api.herokuapp.com/users/login', state) //double-check endpoint
-    .then(res => {
-localStorage.setItem('token', res.data)
-dispatch({type: LOGIN_SUCCESS, payload: res.data })
-    })
-    .catch(err => {
-        localStorage.removeItem('token');
-        console.log('invalid login', err) //add alert?
-    })
-}
-
-export const signup = state => dispatch => {
-dispatch({type: SIGNUP_START});
-return axios 
-.post('https://lambda-how-to-api.herokuapp.com/users/register', state)
-.then(res => {
-    // add console.log
-    localStorage.setItem('token', res.data);
-
-    dispatch({type: SIGNUP_SUCCESS, payload: res.data})
-})
-.catch(err => console.log('error', err.response)
-    )
-}
+export const EDIT_START = 'EDIT_START';
+export const EDIT_SUCCESS = 'EDIT_SUCCESS';
+export const EDIT_ERROR = 'EDIT_ERROR';
 
 
 
 export const getHowtos = () => (dispatch) => {
-    dispatch({type:START_FETCHING})
-    axios.get('https://lambda-how-to-api.herokuapp.com/')
-    .then((res) => dispatch({
-     type: 'FETCH_SUCCESS', payload:res.data,
-    }))
-    .catch((err)=> dispatch({
-        type:FETCH_FAILURE,
-        payload:err.response
-    }))
+    dispatch({type: FETCH_START})
+   return axiosWithAuth()
+    .get('https://reqres.in/api/users?page=2')
+    .then( res => { 
+        console.log(res);
+        dispatch({ type: FETCH_SUCCESS, payload:res.data.data,
+    })
+})
+    .catch(err => {
+        console.log('get error', err)
+        dispatch({type:FETCH_ERROR, payload:err.response
+    })
+})
 }
 
-export const addReview = (review) => (dispatch) => {
-    dispatch({type: ADD_REVIEW})
-    axios.post('tempURL', review)
-    .then((res)=> {
-        dispatch({
-            type: REVIEW_ADDED, payload: res.data
-        })
+export const editHowto = (id) => (dispatch) => { //should have second argument
+    console.log('id:', id)
+    dispatch({type: EDIT_START})
+    return axiosWithAuth()
+    .put(`https://reqres.in/api/users?page=2`) //url endpoint missing id; reqres doesn't accept
+    .then(res => {
+        console.log('Expect response: 200', res.data);
+        dispatch({type: EDIT_SUCCESS})
     })
-    .catch((error)=> {
-        dispatch({type: REVIEW_FAIL, payload: error.response})
+    .catch(err => {
+        console.log('edit error', err)
+        dispatch({type: EDIT_ERROR})
     })
 }
 
-
-// export const FetchReviews = () => (dispatch) => {
-//     dispatch({type:START_FETCHING})
-//     axios.get('fakeURL')
-//     .then((res) => dispatch({
-//      type: 'FETCH_SUCCESS', payload:res.data
-//     }))
-//     .catch((err)=> dispatch({
-//         type:FETCH_FAILURE,
-//         payload:err.response
-//     }))
-// }
+export const deleteHowto = (id) => (dispatch) => {
+    console.log('id:', id)
+    dispatch({type: DELETE_START})
+    return axiosWithAuth()
+    .delete(`https://reqres.in/api/users?page=2`)//url endpoint missing id; reqres doesn't accept
+    .then(res => { 
+        
+        console.log('Expect response: 204', res.data)
+    dispatch({
+        type: DELETE_SUCCESS
+    })  
+    })
+    .catch(err => {
+        console.log('delete error', err)
+        dispatch({type: DELETE_ERROR, payload: err.response})
+    })
+}
 
 // export const addReview = (review) => (dispatch) => {
 //     dispatch({type: ADD_REVIEW})
@@ -101,4 +87,17 @@ export const addReview = (review) => (dispatch) => {
 //     .catch((error)=> {
 //         dispatch({type: REVIEW_FAIL, payload: error.response})
 //     })
+// }
+
+
+// export const FetchReviews = () => (dispatch) => {
+//     dispatch({type:START_FETCHING})
+//     axios.get('tempURL')
+//     .then((res) => dispatch({
+//      type: 'FETCH_SUCCESS', payload:res.data
+//     }))
+//     .catch((err)=> dispatch({
+//         type:FETCH_FAILURE,
+//         payload:err.response
+//     }))
 // }

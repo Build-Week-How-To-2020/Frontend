@@ -19,3 +19,51 @@
 .formContainer {
   border: none;
 }
+
+.cursor {
+  cursor: pointer;
+  /* margin: 0 auto; */
+}
+
+.how-tos-container {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 1rem;
+  
+    /* margin: 50px 250px 5px 250px; */
+    /* border: 10px solid white, */
+}
+
+.container {
+  background: linear-gradient(to bottom, #242582 0%, grey 100%);
+    height: 45rem;
+}
+
+.font {
+  color:white;
+  
+}
+
+.size {
+  font-size: .9rem;
+}
+
+.head {
+  border-bottom: solid 1px white;
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+
+/* (to bottom, #33ccff 0%, #ff99cc 100%); */
+
+.button {
+  background: linear-gradient(to bottom, #F64C72 0%, orange 100%);
+  color: white;
+  border-radius: 4%; 
+  width: 8rem;
+  border: 0px;
+  height: 1.5rem;
+  margin-top: .5rem;
+  
+}
+

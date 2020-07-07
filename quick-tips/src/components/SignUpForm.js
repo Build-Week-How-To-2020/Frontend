@@ -3,7 +3,7 @@ import '../components/SignUpForm.css'
 import * as yup from 'yup';
 import axios from 'axios';
 
-export default function Form(){
+export default function Form(props){
     const [formState, setFormState] = useState({
         email: '',
         password: '',
@@ -21,17 +21,17 @@ export default function Form(){
         .required('This field is required'),
         password: yup
         .string()
-        .min(8, 'Password needs to be at least 8 characters')
+        .min(5, 'Password needs to be at least 8 characters') //had to change min from 8 to 5 since had to use reqres api and password 
         .required('This field is required'),
-        username: yup
-        .string()
-        .required('This field is required'),
-        consumer: yup
-        .string()
-        .oneOf(['creator', 'student']),
-        terms: yup
-        .boolean()
-        .oneOf([true])
+        // username: yup
+        // .string()
+        // .required('This field is required'),
+        // consumer: yup
+        // .string()
+        // .oneOf(['creator', 'student']),
+        // terms: yup
+        // .boolean()
+        // .oneOf([true]) //--> reqres only accepts email + password. Leaving additional fields blank  allows successful post request
     })
     useEffect(() => {
         formSchema.isValid(formState).then(isFormValid => {
@@ -89,17 +89,24 @@ export default function Form(){
     const onSubmit = e => {
         e.preventDefault();
         axios
-            .post('https://reqres.in/api/users', formState)
+            .post('https://reqres.in/api/register', formState)
             .then(res => {
-                setPost(res.data);
+                console.log('Expected response 200', res.data)
+                // setPost(res.data);
+                props.history.push('/login');
+
+                setFormState({
+                    email: '',
+                    password: '',
+                    username: '',
+                    consumer: '',
+                    terms: false
+                })
             })
-        setFormState({
-            email: '',
-            password: '',
-            username: '',
-            consumer: '',
-            terms: false
-        })
+            .catch(err => {
+                console.log('signup error', err)
+            })
+       
     }
     return(
             <div className='form-wrapper'>

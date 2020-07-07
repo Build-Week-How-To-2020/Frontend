@@ -1,10 +1,10 @@
-import { START_FETCHING, 
+import { FETCH_START, 
         FETCH_SUCCESS,
-        FETCH_FAILURE,
+        FETCH_ERROR,
         
-        ADD_HOW_TO,
+        HOW_TO_START,
         HOW_TO_SUCCESS,
-        HOW_TO_FAIL,
+        HOW_TO_ERROR,
 
         LOGIN_START,
         LOGIN_SUCCESS,
@@ -12,12 +12,19 @@ import { START_FETCHING,
 
         SIGNUP_START,
         SIGNUP_SUCCESS,
-        SIGNUP_ERROR
-       
+        SIGNUP_ERROR,
+
+        DELETE_START,
+        DELETE_SUCCESS,
+        DELETE_ERROR,
+
+        EDIT_START,
+        EDIT_SUCCESS,
+        EDIT_ERROR,
 
 } from '../../actions1';
 
-const initialState = {
+export const initialState = {
     Howtos: [],
     Howto: null,
     user: [],
@@ -27,14 +34,15 @@ const initialState = {
     addingHowto:false,
     error: '',
     token: localStorage.getItem('token'),
+    username:''
 }
 
-const reducer = (state = initialState, action) => {
+export const reducer = (state = initialState, action) => {
     switch(action.type) {
-    case START_FETCHING:
+    case FETCH_START:
     return {
         ...state,
-        gettingHowtos: true,
+        gettingHowtos: true
         
     };
 
@@ -45,13 +53,13 @@ const reducer = (state = initialState, action) => {
             Howtos: action.payload
         };
         
-    case FETCH_FAILURE: 
+    case FETCH_ERROR: 
     return {
        ...state,
        gettingHowtos: false,
        error: action.payload,
     };
-    case ADD_HOW_TO:
+    case HOW_TO_START:
     return {
         ...state,
         addingHowto: true,
@@ -60,15 +68,14 @@ const reducer = (state = initialState, action) => {
     
     case HOW_TO_SUCCESS:
     return{
-        ...state,
-        isFetching: false,
-        error: '',
+        ...state, //all state?
+        addingHowto: false,
         Howto: action.payload
     };
-   case HOW_TO_FAIL:
+   case HOW_TO_ERROR:
    return{
        ...state,
-       isFetching: false,
+       addingHowto: false,
        error: action.payload
    };
    case LOGIN_START:
@@ -107,8 +114,39 @@ const reducer = (state = initialState, action) => {
    return {
      ...state,
      signingUp: false,
-     error: action.payload
+     err: action.payload
    };
+
+   case DELETE_START:
+   return {
+     ...state,
+
+   };
+
+   case DELETE_SUCCESS: 
+   return {
+     ...state,
+   };
+   
+   case DELETE_ERROR:
+   return {
+     ...state,
+   };
+
+   case EDIT_START:
+   return {
+     ...state,
+   };
+
+   case EDIT_SUCCESS:
+   return {
+     ...state,
+   }
+
+   case EDIT_ERROR:
+   return {
+   ...state,
+   }
     default:
     return state;
 }

@@ -3,8 +3,10 @@ import LoginForm from "./components/LoginForm";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import styled from "styled-components";
-import Form from './components//SignUpForm';
+import Form from './components/SignUpForm';
 import {Route, Link } from 'react-router-dom';
+import Howtos from "./components/Howtos";
+
 const Container = styled.body`
   display: flex;
   flex-direction: column;
@@ -28,6 +30,7 @@ function App() {
     <Container>
     <Route path="/login" component ={LoginForm}></Route>
     <Route path="/signup" component ={Form}></Route>
+    <Route path="/howtos" component={Howtos}></Route>
 
     </Container>
 
